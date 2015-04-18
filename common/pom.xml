@@ -8,8 +8,16 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <version>${speed.common.version}</version>
 
     <artifactId>common</artifactId>
+    <description>这个模块主要用于序列化和一些基本的传输对象</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

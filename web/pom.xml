@@ -9,7 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>server</artifactId>
+    <artifactId>web</artifactId>
+    <version>${speed.web.version}</version>
+    <description>web页面展示服务治理实时状况</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.speed.service</groupId>
+            <artifactId>configcenter</artifactId>
+            <version>${speed.configcenter.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

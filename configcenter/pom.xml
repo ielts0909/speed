@@ -8,14 +8,16 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <version>${speed.configcenter.version}</version>
 
     <artifactId>configcenter</artifactId>
+    <description>软负载模块，用于服务注册、服务发现和服务管理用。提供接口用作web模块使用</description>
 
     <dependencies>
         <dependency>
             <groupId>com.speed.service</groupId>
             <artifactId>network</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${speed.network.version}</version>
         </dependency>
     </dependencies>
 
