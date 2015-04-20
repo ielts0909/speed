@@ -44,4 +44,18 @@ public interface ServiceDefinition {
      * @param version
      */
     void setServiceVersion(String version);
+
+    /**
+     * service group
+     *
+     * @return
+     */
+    String getServiceGroup();
+
+    /**
+     * set group
+     *
+     * @param group
+     */
+    void setServiceGroup(String group);
 }
