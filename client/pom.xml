@@ -11,6 +11,7 @@
 
     <artifactId>client</artifactId>
     <version>${speed.client.version}</version>
+    <description>客户端，用于服务创建、服务消费</description>
 
     <dependencies>
         <dependency>
