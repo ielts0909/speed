@@ -1,5 +1,7 @@
 package com.speed.service.common.protocol;
 
+import java.lang.reflect.Method;
+
 /**
  * Definite the speed service.
  * All Service of Speed should be Allowed this Protocol
@@ -58,4 +60,26 @@ public interface ServiceDefinition {
      * @param group
      */
     void setServiceGroup(String group);
+
+
+    /**
+     * set service interface
+     *
+     * @param serviceInterface
+     */
+    void setServiceInterface(Class<?> serviceInterface);
+
+    /**
+     * get service interface
+     *
+     * @return
+     */
+    Class<?> getServiceInterface();
+
+    /**
+     * get method of service
+     *
+     * @return
+     */
+    Method[] getServiceMethods();
 }
