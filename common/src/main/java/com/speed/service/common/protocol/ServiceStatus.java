@@ -6,5 +6,6 @@ package com.speed.service.common.protocol;
  * Time: 下午9:15
  */
 public enum ServiceStatus {
+    /***/
     OFFLINE, ONLINE, PAUSE;
 }
