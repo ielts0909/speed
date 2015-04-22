@@ -9,4 +9,6 @@ package com.speed.service.client.invoking;
  */
 public interface Invoking {
 
+    void asyncInvoke();
+
 }
