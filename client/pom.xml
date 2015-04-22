@@ -16,8 +16,8 @@
     <dependencies>
         <dependency>
             <groupId>com.speed.service</groupId>
-            <artifactId>configcenter</artifactId>
-            <version>${speed.configcenter.version}</version>
+            <artifactId>network</artifactId>
+            <version>${speed.network.version}</version>
         </dependency>
     </dependencies>
 
