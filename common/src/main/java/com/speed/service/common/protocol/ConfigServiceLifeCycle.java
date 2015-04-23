@@ -6,6 +6,5 @@ package com.speed.service.common.protocol;
  * Time: 上午7:30
  */
 public interface ConfigServiceLifeCycle {
-    int INIT = 1;
 
 }
