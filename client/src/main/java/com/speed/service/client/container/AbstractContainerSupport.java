@@ -1,7 +1,9 @@
 package com.speed.service.client.container;
 
 
+import com.speed.service.client.utils.StringUtils;
 import com.speed.service.common.protocol.ConfigServiceLifeCycle;
+import com.speed.service.common.protocol.ServiceDefinition;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -40,6 +42,19 @@ public abstract class AbstractContainerSupport {
             }
         }
         return ips;
+    }
+
+    /**
+     * check the service is illegal
+     *
+     * @param serviceDefinition
+     * @return
+     */
+    protected boolean checkServiceIllegal(ServiceDefinition serviceDefinition) {
+        return null == serviceDefinition
+                || StringUtils.isBlank(serviceDefinition.getServiceName())
+                || StringUtils.isBlank(serviceDefinition.getServiceVersion())
+                || null == serviceDefinition.getServiceInterface();
     }
 
     /**

@@ -15,12 +15,12 @@ public interface ServiceProvider {
     /**
      * init service
      */
-    void initalizeService();
+    void initalizeService(ServiceDefinition serviceDefinition);
 
     /**
      * destroy service
      */
-    void destroyService();
+    void destroyService(ServiceDefinition serviceDefinition);
 
     /**
      * Get current service definition
@@ -34,13 +34,14 @@ public interface ServiceProvider {
      *
      * @return
      */
-    ServiceStatus getServiceStatus();
+    ServiceStatus getServiceStatus(ServiceDefinition serviceDefinition);
 
     /**
      * set service status
      *
+     * @param serviceDefinition
      * @param serviceStatus
      * @return
      */
-    boolean setServiceStatus(ServiceStatus serviceStatus);
+    boolean setServiceStatus(ServiceDefinition serviceDefinition, ServiceStatus serviceStatus);
 }
