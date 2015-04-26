@@ -62,6 +62,7 @@ public abstract class AbstractContainerSupport {
      */
     protected void asyncConnectConfigServer() {
 
+        String emp = "";
         configServerRtnCallback(null);
     }
 
