@@ -1,6 +1,9 @@
 package com.speed.servoce.configserver.provider;
 
+import com.speed.service.common.protocol.ServiceDefinition;
 import com.speed.service.common.protocol.ServiceProviderDefinition;
+
+import java.util.List;
 
 /**
  * service provider register
@@ -17,4 +20,13 @@ public interface ProviderConfig {
      * @return
      */
     boolean registerToConfigServer(ServiceProviderDefinition providerDefinition);
+
+
+    /**
+     * push service of online to config server
+     *
+     * @param serviceDefinitionList
+     * @return
+     */
+    boolean pushServiceDefinitions(List<ServiceDefinition> serviceDefinitionList);
 }

@@ -123,6 +123,7 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
                 tmp.add(entry.getValue());
             }
         }
+        //ServiceDefinition[] definitions = CollectionUtils.asArray(tmp);
         return tmp;
     }
 

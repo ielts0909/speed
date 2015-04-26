@@ -11,11 +11,22 @@ import java.util.Collection
  */
 object CollectionUtils {
 
-  def isEmpty(collection: Collection): Boolean = {
+  def isEmpty[T](collection: Collection[T]): Boolean = {
     if (null != collection && collection.size() > 0)
       true
     else
       false
   }
 
+  def asArray[T](collection: Collection[T]): Array[T] = {
+    if (isEmpty(collection)) Nil
+    val total: Int = collection.size()
+    val array = new Array[T](total)
+    var i = 0
+    for (t <- collection) {
+      array(i) = t
+      i = i + 1
+    }
+    array
+  }
 }
