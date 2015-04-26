@@ -10,6 +10,7 @@ import com.speed.service.common.protocol.ServiceStatus;
 import java.net.SocketException;
 import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Collections;
@@ -31,6 +32,7 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
     //has bean init
     private AtomicBoolean initialized = new AtomicBoolean(false);
 
+    //put the service which is unService
     private final Set<ServiceDefinition> unStartService = Collections.synchronizedSet(new HashSet<ServiceDefinition>());
     //container  key:serviceName+ '_' +version
     private final Map<String, ServiceDefinition> serviceMap = new ConcurrentHashMap<String, ServiceDefinition>(64);
@@ -100,8 +102,28 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
 
     }
 
-    public ServiceDefinition[] getService(String serviceName) {
-        return new ServiceDefinition[0];
+    /**
+     * get service
+     *
+     * @param serviceName
+     * @param version     if null return all  versions of services
+     * @return
+     */
+    public List<ServiceDefinition> getService(String serviceName, String version) {
+        List<ServiceDefinition> tmp = new ArrayList<ServiceDefinition>();
+        if (version != null) {//point version
+            String key = getServiceUniqueKey(serviceName, version);
+            ServiceDefinition definition = serviceMap.get(key);
+            if (null == definition) return tmp;
+            tmp.add(definition);
+            return tmp;
+        }
+        for (Map.Entry<String, ServiceDefinition> entry : serviceMap.entrySet()) {
+            if (entry.getKey().contains(serviceName)) {
+                tmp.add(entry.getValue());
+            }
+        }
+        return tmp;
     }
 
     /**
@@ -137,7 +159,7 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
         return definition;
     }
 
-    public final String getServiceUniqueKey(ServiceDefinition serviceDefinition) {
-        return serviceDefinition.getServiceName() + "_" + serviceDefinition.getServiceVersion();
+    public final String getServiceUniqueKey(String serviceName, String version) {
+        return serviceName + "_" + version;
     }
 }

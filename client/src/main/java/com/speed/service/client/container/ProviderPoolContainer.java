@@ -2,6 +2,8 @@ package com.speed.service.client.container;
 
 import com.speed.service.common.protocol.ServiceDefinition;
 
+import java.util.List;
+
 /**
  * Manager the life cycle of container
  * <p/>
@@ -44,7 +46,8 @@ public interface ProviderPoolContainer {
      * Get service definition
      *
      * @param serviceName
+     * @param version     if null return all  versions of services
      * @return
      */
-    ServiceDefinition[] getService(String serviceName);
+    List<ServiceDefinition> getService(String serviceName, String version);
 }
