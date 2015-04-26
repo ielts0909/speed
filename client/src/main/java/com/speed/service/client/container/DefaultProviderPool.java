@@ -110,14 +110,16 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
      * @return
      */
     public List<ServiceDefinition> getService(String serviceName, String version) {
-        List<ServiceDefinition> tmp = new ArrayList<ServiceDefinition>();
+        List<ServiceDefinition> tmp = null;
         if (version != null) {//point version
+            tmp = new ArrayList<ServiceDefinition>(1);
             String key = getServiceUniqueKey(serviceName, version);
             ServiceDefinition definition = serviceMap.get(key);
-            if (null == definition) return tmp;
+            if (null == definition) return Collections.emptyList();
             tmp.add(definition);
             return tmp;
         }
+        tmp = new ArrayList<ServiceDefinition>();
         for (Map.Entry<String, ServiceDefinition> entry : serviceMap.entrySet()) {
             if (entry.getKey().contains(serviceName)) {
                 tmp.add(entry.getValue());
