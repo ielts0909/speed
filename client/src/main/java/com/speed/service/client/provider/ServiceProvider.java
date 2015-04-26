@@ -15,7 +15,7 @@ public interface ServiceProvider {
     /**
      * init service
      */
-    void initalizeService(ServiceDefinition serviceDefinition);
+    boolean initalizeService(ServiceDefinition serviceDefinition);
 
     /**
      * destroy service

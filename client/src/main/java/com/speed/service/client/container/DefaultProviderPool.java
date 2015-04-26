@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.Collections;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.Iterator;
 
 /**
  * default provider pool
@@ -133,6 +134,21 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
      * refresh to start pool
      */
     private void refresh() {
+        if (initialized.get()) {
+            throw new IllegalStateException("before refresh the container has been inited!");
+        }
+        //refresh service
+        if (!CollectionUtils.isEmpty(unStartService)) {
+            for (Iterator<ServiceDefinition> iterator = unStartService.iterator(); iterator.hasNext(); ) {
+                ServiceDefinition definition = iterator.next();
+                if (serviceProvider.initalizeService(definition)) { //start service
+                    serviceMap.put(getServiceUniqueKey(definition.getServiceName(),
+                            definition.getServiceVersion()), definition);
+                    iterator.remove();
+                }
+            }
+        }
+        //if all service is started, publish container
 
     }
 
