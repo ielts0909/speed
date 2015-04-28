@@ -12,6 +12,6 @@ public class Context implements ProviderEventListener {
     public void onRefreshed(ProviderEvent providerEvent) {
         ProviderEventSource eventSource = (ProviderEventSource) providerEvent.getSource();
         ServiceDefinition definitions = eventSource.getServiceDefinitions();
-        System.out.println("------" + definitions);
+        System.out.println("------" + definitions.getServiceName());
     }
 }

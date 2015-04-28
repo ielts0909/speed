@@ -20,6 +20,8 @@ public class MultiCaster {
     }
 
     private List<ProviderEventListener> getEventListener(ProviderEvent providerEvent) {
+        ProviderEventSource eventSource = (ProviderEventSource) providerEvent.getSource();
+
         List<ProviderEventListener> list = new ArrayList<ProviderEventListener>();
         list.add(new Context());
         return list;
