@@ -58,6 +58,12 @@ public abstract class AbstractServiceProvider implements ServiceProvider {
         return true;
     }
 
+    /**
+     * default invoke method
+     *
+     * @param definition
+     * @return
+     */
     public Object invoke(InvokeDefinition definition) {
         if (null == definition) {
             return null;

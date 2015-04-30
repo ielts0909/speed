@@ -20,8 +20,8 @@ object CollectionUtils {
    */
   def isEmpty[T](collection: Collection[T]): Boolean = {
     if (null != collection && collection.size() > 0)
-      true
-    else
       false
+    else
+      true
   }
 }

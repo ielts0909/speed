@@ -56,6 +56,10 @@ public class Main {
                 return null;
             }
 
+            public void setTargetServiceObject(Object target) {
+
+            }
+
             public Method[] getServiceMethods() {
                 return new Method[0];
             }

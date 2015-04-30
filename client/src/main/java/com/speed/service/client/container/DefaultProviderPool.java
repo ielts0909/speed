@@ -38,7 +38,7 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
     private final Map<String, ServiceDefinition> serviceMap = new ConcurrentHashMap<String, ServiceDefinition>(64);
 
     protected DefaultProviderPool(ServiceProvider provider, String appName, String group) {
-        if (serviceProvider == null) {
+        if (provider == null) {
             throw new IllegalArgumentException("ServiceProvider cannot be null!");
         }
         this.serviceProvider = provider;

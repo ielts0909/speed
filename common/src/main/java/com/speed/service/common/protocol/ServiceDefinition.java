@@ -84,6 +84,12 @@ public interface ServiceDefinition {
     Object getTargetServiceObject();
 
     /**
+     *
+     * @param target
+     */
+    void setTargetServiceObject(Object target);
+
+    /**
      * get method of service
      *
      * @return
