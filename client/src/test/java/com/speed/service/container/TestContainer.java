@@ -1,5 +1,9 @@
 package com.speed.service.container;
 
+import com.speed.service.client.events.SpeedServiceProviderEvent;
+import com.speed.service.client.events.SpeedServiceRefreshListener;
+import com.speed.service.common.multicast.EventMultiCaster;
+import com.speed.service.common.multicast.SpeedEventListenerManager;
 import com.speed.service.common.protocol.InvokeDefinition;
 import org.junit.Test;
 
@@ -13,6 +17,11 @@ public class TestContainer {
 
     @Test
     public void testContainer() throws ClassNotFoundException {
+        SpeedEventListenerManager.getInstance().addListener(new SpeedServiceRefreshListener() {
+            public void onRefresh(SpeedServiceProviderEvent providerEvent) {
+                System.out.println("providerEvent:" + providerEvent.getSource());
+            }
+        });
         NativeServiceProvider provider = new NativeServiceProvider();
         NativeProviderPool providerPool = new NativeProviderPool(provider, "a2", "speed");
         DefaultServiceDefinition serviceDefinition = new DefaultServiceDefinition();
@@ -25,6 +34,7 @@ public class TestContainer {
         providerPool.registerService(serviceDefinition);
         providerPool.initialize();
 
+        //invoke
         InvokeDefinition invokeDefinition = new InvokeDefinition();
         invokeDefinition.setArgs(new String[]{"test"});
         invokeDefinition.setServiceName("FavoriteService");

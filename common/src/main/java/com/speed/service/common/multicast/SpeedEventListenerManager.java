@@ -22,9 +22,14 @@ public class SpeedEventListenerManager {
 
     public static SpeedEventListenerManager getInstance() {
         if (null == manager) {
-            return new SpeedEventListenerManager();
+            manager = new SpeedEventListenerManager();
+            return manager;
         }
         return manager;
+    }
+
+    public void addListener(EventListener listener) {
+        this.listenerList.add(listener);
     }
 
     public List<EventListener> getListenerList() {
