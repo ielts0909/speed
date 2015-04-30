@@ -2,23 +2,19 @@ package com.speed.service.client.container;
 
 import com.speed.service.client.events.SpeedServiceProviderEvent;
 import com.speed.service.client.events.SpeedServiceProviderSource;
+import com.speed.service.client.events.SpeedServiceRefreshListener;
 import com.speed.service.client.provider.ServiceProvider;
 import com.speed.service.client.utils.CollectionUtils;
 import com.speed.service.client.utils.RecordLog;
+import com.speed.service.common.multicast.SpeedEventListenerManager;
 import com.speed.service.common.protocol.ServiceDefinition;
 import com.speed.service.common.protocol.ServiceProviderDefinition;
 import com.speed.service.common.protocol.ServiceStatus;
 
 import java.net.SocketException;
-import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Collections;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.Iterator;
 
 /**
  * default provider pool
@@ -153,6 +149,13 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
         //event mock
         SpeedServiceProviderSource providerSource = new SpeedServiceProviderSource(serviceMap);
         SpeedServiceProviderEvent event = new SpeedServiceProviderEvent(providerSource);
+        List<EventListener> listeners = SpeedEventListenerManager.getInstance().getListenerList();
+        for (EventListener listener : listeners) {
+            if (listener instanceof SpeedServiceRefreshListener) {
+                SpeedServiceRefreshListener refreshListener = (SpeedServiceRefreshListener) listener;
+                refreshListener.onRefresh(event);
+            }
+        }
         //if all service is started, publish container
         //this.
     }
