@@ -24,25 +24,4 @@ object CollectionUtils {
     else
       false
   }
-
-  /**
-   * change collection to arrays
-   *
-   * @param collection
-   * @tparam T
-   * @return
-   */
-//  def asArray[T](collection: Collection[T]): Array[T] = {
-//    if (isEmpty(collection)) Nil
-//    val total: Int = collection.size()
-//    val array=new Array[T](total)
-//    var i = 0
-//    for (t <- collection) {
-//      array(i) = t
-//      i = i + 1
-//    }
-//    array
-//  }
-
-
 }

@@ -5,6 +5,7 @@ import com.speed.service.client.events.SpeedServiceProviderSource;
 import com.speed.service.client.events.SpeedServiceRefreshListener;
 import com.speed.service.client.provider.ServiceProvider;
 import com.speed.service.client.utils.CollectionUtils;
+import com.speed.service.client.utils.NamingUtils;
 import com.speed.service.client.utils.RecordLog;
 import com.speed.service.common.multicast.SpeedEventListenerManager;
 import com.speed.service.common.protocol.ServiceDefinition;
@@ -112,7 +113,7 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
         List<ServiceDefinition> tmp = null;
         if (version != null) {//point version
             tmp = new ArrayList<ServiceDefinition>(1);
-            String key = getServiceUniqueKey(serviceName, version);
+            String key = NamingUtils.uniqueServiceName(serviceName, version);
             ServiceDefinition definition = serviceMap.get(key);
             if (null == definition) return Collections.emptyList();
             tmp.add(definition);
@@ -140,12 +141,14 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
             for (Iterator<ServiceDefinition> iterator = unStartService.iterator(); iterator.hasNext(); ) {
                 ServiceDefinition definition = iterator.next();
                 if (serviceProvider.initalizeService(definition)) { //start service
-                    serviceMap.put(getServiceUniqueKey(definition.getServiceName(),
+                    serviceMap.put(NamingUtils.uniqueServiceName(definition.getServiceName(),
                             definition.getServiceVersion()), definition);
                     iterator.remove();
                 }
             }
         }
+        //clean un start
+
         //event mock
         SpeedServiceProviderSource providerSource = new SpeedServiceProviderSource(serviceMap);
         SpeedServiceProviderEvent event = new SpeedServiceProviderEvent(providerSource);
@@ -156,8 +159,9 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
                 refreshListener.onRefresh(event);
             }
         }
-        //if all service is started, publish container
-        //this.
+        //if all service is started, online service and container
+
+        //connect config server to publish the container
     }
 
     /**
@@ -184,9 +188,5 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
             RecordLog.error("error in get ipv4 address", e);
         }
         return definition;
-    }
-
-    public final String getServiceUniqueKey(String serviceName, String version) {
-        return serviceName + "_" + version;
     }
 }

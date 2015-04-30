@@ -13,7 +13,6 @@ import java.lang.reflect.Method;
 public class Main {
 
 
-
     @Test
     public void testListener() {
         //Context context = new Context();
@@ -49,6 +48,10 @@ public class Main {
             }
 
             public Class<?> getServiceInterface() {
+                return null;
+            }
+
+            public Object getTargetServiceObject() {
                 return null;
             }
 

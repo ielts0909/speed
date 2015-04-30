@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
+ * listener holds manager
+ * <p/>
  * User: gais.ch
  * Date: 15-4-30
  * Time: 上午9:27
@@ -23,10 +25,6 @@ public class SpeedEventListenerManager {
             return new SpeedEventListenerManager();
         }
         return manager;
-    }
-
-    public void addListener(EventListener eventListener) {
-        listenerList.add(eventListener);
     }
 
     public List<EventListener> getListenerList() {

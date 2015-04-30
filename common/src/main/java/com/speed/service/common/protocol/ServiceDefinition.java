@@ -77,6 +77,13 @@ public interface ServiceDefinition {
     Class<?> getServiceInterface();
 
     /**
+     * get target service object
+     *
+     * @return
+     */
+    Object getTargetServiceObject();
+
+    /**
      * get method of service
      *
      * @return
