@@ -153,10 +153,8 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
         //event mock
         SpeedServiceProviderSource providerSource = new SpeedServiceProviderSource(serviceMap);
         SpeedServiceProviderEvent event = new SpeedServiceProviderEvent(providerSource);
-
         //if all service is started, publish container
-
-        //
+        //this.
     }
 
     /**
