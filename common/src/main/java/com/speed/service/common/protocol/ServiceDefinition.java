@@ -90,4 +90,23 @@ public interface ServiceDefinition {
      */
     Method[] getServiceMethods();
 
+    /**
+     * set methods
+     */
+    void setServiceMethods(Method[] methods);
+
+
+    /**
+     * get status
+     *
+     * @return
+     */
+    ServiceStatus getServiceStatus();
+
+    /**
+     * set status
+     *
+     * @param serviceStatus
+     */
+    void setServiceStatus(ServiceStatus serviceStatus);
 }

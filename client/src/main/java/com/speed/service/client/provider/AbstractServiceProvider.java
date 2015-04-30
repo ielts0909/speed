@@ -1,9 +1,11 @@
 package com.speed.service.client.provider;
 
 import com.speed.service.client.utils.NamingUtils;
+import com.speed.service.common.protocol.InvokeDefinition;
 import com.speed.service.common.protocol.ServiceDefinition;
 import com.speed.service.common.protocol.ServiceStatus;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -23,14 +25,6 @@ public abstract class AbstractServiceProvider implements ServiceProvider {
 
     public void destroyService(ServiceDefinition serviceDefinition) {
 
-    }
-
-    public ServiceDefinition getServiceDefinition() {
-        return null;
-    }
-
-    public ServiceStatus getServiceStatus(ServiceDefinition serviceDefinition) {
-        return null;
     }
 
     /**
@@ -60,13 +54,32 @@ public abstract class AbstractServiceProvider implements ServiceProvider {
             String key = nameKey + "_" + method.toString(); //FIXME
             methodMap.put(key, method);
         }
+        serviceDefinition.setServiceStatus(ServiceStatus.ONLINE);
         return true;
     }
 
+    public Object invoke(InvokeDefinition definition) {
+        if (null == definition) {
+            return null;
+        }
+        String nameKey = NamingUtils.uniqueServiceName(definition.getServiceName(), definition.getVersion());
+        Object target = targetMap.get(nameKey);
+        if (null == target) {
+            return null;
+        }
+        Method method = definition.getCallMethod(); //TODO change the style
+        String key = nameKey + "_" + method.toString();
+        Method cacheMethod = methodMap.get(key);
+        if (cacheMethod != null) {
+            try {
+                return cacheMethod.invoke(target, definition.getArgs());
+            } catch (IllegalAccessException e) {
 
-    public boolean setServiceStatus(ServiceDefinition serviceDefinition, ServiceStatus serviceStatus) {
+            } catch (InvocationTargetException e) {
 
-        return false;
+            }
+        }
+        return null;
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.speed.service.events;
 
 import com.speed.service.common.protocol.ServiceDefinition;
+import com.speed.service.common.protocol.ServiceStatus;
 import org.junit.Test;
 
 import java.lang.reflect.Method;
@@ -57,6 +58,18 @@ public class Main {
 
             public Method[] getServiceMethods() {
                 return new Method[0];
+            }
+
+            public void setServiceMethods(Method[] methods) {
+
+            }
+
+            public ServiceStatus getServiceStatus() {
+                return null;
+            }
+
+            public void setServiceStatus(ServiceStatus serviceStatus) {
+
             }
         };
         source.setServiceDefinitions(definition);

@@ -93,7 +93,7 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
             RecordLog.debug("service size is over 65535", null);
             return false;
         }
-        serviceProvider.setServiceStatus(serviceDefinition, ServiceStatus.OFFLINE);
+        serviceDefinition.setServiceStatus(ServiceStatus.OFFLINE);
         unStartService.add(serviceDefinition);
         return true;
     }
@@ -144,6 +144,8 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
                     serviceMap.put(NamingUtils.uniqueServiceName(definition.getServiceName(),
                             definition.getServiceVersion()), definition);
                     iterator.remove();
+                } else {
+                    RecordLog.debug("service of " + definition.getServiceName() + " init error", null);
                 }
             }
         }

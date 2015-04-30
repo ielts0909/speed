@@ -1,5 +1,7 @@
 package com.speed.service.client.invoking;
 
+import com.speed.service.common.protocol.InvokeDefinition;
+
 /**
  * the style of invoke
  * <p/>
@@ -9,6 +11,6 @@ package com.speed.service.client.invoking;
  */
 public interface Invoking {
 
-    void asyncInvoke();
+    void invoke(InvokeDefinition invokeDefinition);
 
 }

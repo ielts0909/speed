@@ -1,8 +1,8 @@
 package com.speed.service.client.provider;
 
 
+import com.speed.service.common.protocol.InvokeDefinition;
 import com.speed.service.common.protocol.ServiceDefinition;
-import com.speed.service.common.protocol.ServiceStatus;
 
 /**
  * service provider define
@@ -22,26 +22,13 @@ public interface ServiceProvider {
      */
     void destroyService(ServiceDefinition serviceDefinition);
 
-    /**
-     * Get current service definition
-     *
-     * @return
-     */
-    ServiceDefinition getServiceDefinition();
 
     /**
-     * get current service status
+     * sync invoke
      *
+     * @param invokeDefinition
      * @return
      */
-    ServiceStatus getServiceStatus(ServiceDefinition serviceDefinition);
+    Object invoke(InvokeDefinition invokeDefinition);
 
-    /**
-     * set service status
-     *
-     * @param serviceDefinition
-     * @param serviceStatus
-     * @return
-     */
-    boolean setServiceStatus(ServiceDefinition serviceDefinition, ServiceStatus serviceStatus);
 }

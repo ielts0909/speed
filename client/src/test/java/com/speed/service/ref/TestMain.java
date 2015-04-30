@@ -17,7 +17,7 @@ public class TestMain {
         Object service = new FavoriteServiceImpl();
         System.out.println(inf.isAssignableFrom(service.getClass()));
 
-        Method[] methods = service.getClass().getDeclaredMethods();
+        Method[] methods = inf.getDeclaredMethods();
         //Method[] methods = inf.getMethods();
         if (null != methods && methods.length > 1) {
             for (Method method : methods) {
