@@ -1,5 +1,6 @@
 package com.speed.service.container;
 
+import com.speed.service.common.protocol.InvokeDefinition;
 import org.junit.Test;
 
 
@@ -19,8 +20,16 @@ public class TestContainer {
         serviceDefinition.setServiceInterface(Class.forName("com.speed.service.container.FavoriteService"));
         serviceDefinition.setServiceName("FavoriteService");
         serviceDefinition.setServiceVersion("1.0.0");
-        serviceDefinition.setTargetServiceObject(new FavoriteServiceImpl());
+        FavoriteServiceImpl target = new FavoriteServiceImpl();
+        serviceDefinition.setTargetServiceObject(target);
         providerPool.registerService(serviceDefinition);
         providerPool.initialize();
+
+        InvokeDefinition invokeDefinition = new InvokeDefinition();
+        invokeDefinition.setArgs(new String[]{"test"});
+        invokeDefinition.setServiceName("FavoriteService");
+        invokeDefinition.setVersion("1.0.0");
+        invokeDefinition.setCallMethod(FavoriteService.class.getMethods()[0]);
+        provider.invoke(invokeDefinition);
     }
 }

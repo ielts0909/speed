@@ -34,7 +34,7 @@ public abstract class AbstractServiceProvider implements ServiceProvider {
      * @return
      */
     public boolean initalizeService(ServiceDefinition serviceDefinition) {
-        if (!checkDefinition(serviceDefinition)) {
+        if (checkDefinition(serviceDefinition)) {
             return false;
         }
         Class<?> clz = serviceDefinition.getServiceInterface();
