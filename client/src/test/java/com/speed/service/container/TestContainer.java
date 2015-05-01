@@ -25,7 +25,7 @@ public class TestContainer {
         NativeServiceProvider provider = new NativeServiceProvider();
         NativeProviderPool providerPool = new NativeProviderPool(provider, "a2", "speed");
         DefaultServiceDefinition serviceDefinition = new DefaultServiceDefinition();
-        serviceDefinition.setServiceGroup("hsf");
+        serviceDefinition.setServiceGroup("speed");
         serviceDefinition.setServiceInterface(Class.forName("com.speed.service.container.FavoriteService"));
         serviceDefinition.setServiceName("FavoriteService");
         serviceDefinition.setServiceVersion("1.0.0");
