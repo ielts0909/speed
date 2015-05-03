@@ -21,6 +21,7 @@ public class CommunicationProtocol implements Serializable {
     private Object value;//return value
 
     private long cost;//cost time
+    private String crc32;
 
     public String getCallFrom() {
         return callFrom;
@@ -68,5 +69,13 @@ public class CommunicationProtocol implements Serializable {
 
     public void setValue(Object value) {
         this.value = value;
+    }
+
+    public String getCrc32() {
+        return crc32;
+    }
+
+    public void setCrc32(String crc32) {
+        this.crc32 = crc32;
     }
 }
