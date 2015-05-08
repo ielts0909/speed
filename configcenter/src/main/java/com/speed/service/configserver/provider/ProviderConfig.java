@@ -1,4 +1,4 @@
-package com.speed.servoce.configserver.provider;
+package com.speed.service.configserver.provider;
 
 import com.speed.service.common.protocol.ServiceDefinition;
 import com.speed.service.common.protocol.ServiceProviderDefinition;
