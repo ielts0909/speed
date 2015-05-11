@@ -19,6 +19,8 @@ object ZkUtils {
   val DeleteTopicsPath = "/admin/delete_topics"
   val PreferredReplicaLeaderElectionPath = "/admin/preferred_replica_election"
 
+  def connectMaster() = {
 
+  }
 
 }
