@@ -7,6 +7,6 @@ package com.speed.service.network.server;
  * Date: 15-5-2
  * Time: 上午6:39
  */
-public class ServiceServer {
+public abstract class ServiceServer {
 
 }
