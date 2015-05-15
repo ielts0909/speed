@@ -9,4 +9,13 @@ package com.speed.service.network.server;
  */
 public abstract class ServiceServer {
 
+    private int port = 7878;//default listener port
+
+
+    /**
+     * start the server
+     */
+    public final void bootstrap() {
+
+    }
 }
