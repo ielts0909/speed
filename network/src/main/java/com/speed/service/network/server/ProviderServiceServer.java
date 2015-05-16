@@ -9,4 +9,8 @@ package com.speed.service.network.server;
  */
 public class ProviderServiceServer extends ServiceServer {
 
+    @Override
+    public void bootstrap() {
+
+    }
 }

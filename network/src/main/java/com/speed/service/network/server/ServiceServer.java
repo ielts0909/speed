@@ -13,9 +13,14 @@ public abstract class ServiceServer {
 
 
     /**
-     * start the server
+     * run
      */
-    public final void bootstrap() {
+    protected void run() {
 
     }
+
+    /**
+     * start the server
+     */
+    public abstract void bootstrap();
 }
