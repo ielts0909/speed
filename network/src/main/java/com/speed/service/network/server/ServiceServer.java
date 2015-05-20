@@ -1,5 +1,11 @@
 package com.speed.service.network.server;
 
+import com.speed.service.network.features.ServiceFeature;
+import com.speed.service.network.protocol.ClientMeta;
+import com.speed.service.network.protocol.CommunicationProtocol;
+
+import java.util.List;
+
 /**
  * keep long connection for servicing
  * <p/>
@@ -7,20 +13,25 @@ package com.speed.service.network.server;
  * Date: 15-5-2
  * Time: 上午6:39
  */
-public abstract class ServiceServer {
-
-    private int port = 7878;//default listener port
+public interface ServiceServer {
 
 
-    /**
-     * run
-     */
-    protected void run() {
-
-    }
+    void bootstrap(int port);
 
     /**
-     * start the server
+     * send message to client
+     *
+     * @param meta
+     * @param protocol
+     * @return
      */
-    public abstract void bootstrap();
+    ServiceFeature send(ClientMeta meta, CommunicationProtocol protocol);
+
+    /**
+     *
+     *
+     * @param protocol
+     * @return
+     */
+    List<ServiceFeature> broadcast(CommunicationProtocol protocol);
 }

@@ -17,7 +17,7 @@ public class ThreadPoolUtil {
     static final Logger logger = Logger.getLogger(ThreadPoolUtil.class);
 
     public static final ThreadPoolExecutor asynExecutor = new ThreadPoolExecutor(
-            2, 10, 30, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(10),
+            2, 10, 5, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(10),
             new RejectedExecutionHandler() {
                 @SuppressWarnings("static-access")
                 public void rejectedExecution(Runnable r,
