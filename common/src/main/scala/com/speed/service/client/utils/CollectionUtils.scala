@@ -24,4 +24,18 @@ object CollectionUtils {
     else
       true
   }
+
+  /**
+   * is empty of collect
+   *
+   * @param map
+   * @tparam K,V
+   * @return
+   */
+  def isEmpty[K, V](map: Map[K, V]): Boolean = {
+    if (null != map && !map.isEmpty)
+      false
+    else
+      true
+  }
 }
