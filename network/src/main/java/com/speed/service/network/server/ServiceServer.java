@@ -1,6 +1,7 @@
 package com.speed.service.network.server;
 
 import com.speed.service.network.features.ServiceFeature;
+import com.speed.service.network.handler.DefaultHandler;
 import com.speed.service.network.protocol.ClientMeta;
 import com.speed.service.network.protocol.CommunicationProtocol;
 
@@ -28,10 +29,16 @@ public interface ServiceServer {
     ServiceFeature send(ClientMeta meta, CommunicationProtocol protocol);
 
     /**
-     *
-     *
      * @param protocol
      * @return
      */
     List<ServiceFeature> broadcast(CommunicationProtocol protocol);
+
+
+    /**
+     * set default handler
+     *
+     * @param defaultHandler
+     */
+    void setDefaultHandler(DefaultHandler defaultHandler);
 }

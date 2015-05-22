@@ -20,7 +20,7 @@ public class AddListener {
     public void add(AddEvent addEvent) {
         System.out.println("add...." + addEvent.toString());
         try {
-            Thread.sleep(10000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

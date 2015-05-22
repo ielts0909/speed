@@ -10,8 +10,9 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         AsyncEventBusFacade facade = new AsyncEventBusFacade();
+        System.out.println(AsyncEventBusFacade.class.getName());
         AddListener listener = new AddListener(facade);
         for (int i = 0; i < 100; i++)
-            facade.getEventBus().post(new AddEvent(new Random().nextInt()));
+            facade.getEventBus().post(new SubAddEvent(new Random().nextInt()));
     }
 }
