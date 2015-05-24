@@ -5,5 +5,6 @@ package com.speed.service.network.features;
  * Date: 15/5/18
  * Time: 下午9:23
  */
-public class ServiceFeature {
+public interface ServiceFeature {
+
 }

@@ -1,11 +1,6 @@
 package com.speed.service.network.server;
 
-import com.speed.service.network.features.ServiceFeature;
 import com.speed.service.network.handler.DefaultHandler;
-import com.speed.service.network.protocol.ClientMeta;
-import com.speed.service.network.protocol.CommunicationProtocol;
-
-import java.util.List;
 
 /**
  * keep long connection for servicing
@@ -17,23 +12,7 @@ import java.util.List;
 public interface ServiceServer {
 
 
-    void bootstrap(int port);
-
-    /**
-     * send message to client
-     *
-     * @param meta
-     * @param protocol
-     * @return
-     */
-    ServiceFeature send(ClientMeta meta, CommunicationProtocol protocol);
-
-    /**
-     * @param protocol
-     * @return
-     */
-    List<ServiceFeature> broadcast(CommunicationProtocol protocol);
-
+    void bootstrap(int port) throws InterruptedException;
 
     /**
      * set default handler
@@ -41,4 +20,12 @@ public interface ServiceServer {
      * @param defaultHandler
      */
     void setDefaultHandler(DefaultHandler defaultHandler);
+
+    /**
+     * shutdown the server
+     *
+     * @param rightNow
+     */
+    void shutdown(boolean rightNow);
+
 }
