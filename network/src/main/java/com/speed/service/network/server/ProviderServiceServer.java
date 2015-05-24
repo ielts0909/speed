@@ -1,5 +1,6 @@
 package com.speed.service.network.server;
 
+import com.speed.service.network.features.ServiceFeature;
 import com.speed.service.network.handler.DefaultHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -16,17 +17,12 @@ import java.util.List;
  * Date: 15/5/14
  * Time: 下午9:36
  */
-public abstract class ProviderServiceServer implements ServiceServer {
+public class ProviderServiceServer implements ServiceServer {
 
-    private final int port;//listening port
     private DefaultHandler handler;
     private ChannelFuture f;
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
-
-    protected ProviderServiceServer(int port) {
-        this.port = port;
-    }
 
     public void bootstrap(int port) throws InterruptedException {
         this.bossGroup = new NioEventLoopGroup(); // (1)
@@ -51,7 +47,8 @@ public abstract class ProviderServiceServer implements ServiceServer {
                             @Override
                             public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                                 super.channelRead(ctx, msg);
-                                handler.receive(null);
+                                ServiceFeature feature = handler.receive(null);
+
                             }
 
                             @Override

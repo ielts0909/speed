@@ -1,5 +1,6 @@
 package com.speed.service.network.handler;
 
+import com.speed.service.network.features.ServiceFeature;
 import com.speed.service.network.protocol.CommunicationProtocol;
 
 /**
@@ -15,5 +16,5 @@ public interface DefaultHandler {
      *
      * @param protocol
      */
-    void receive(CommunicationProtocol protocol);
+    ServiceFeature receive(CommunicationProtocol protocol);
 }

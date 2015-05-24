@@ -11,6 +11,7 @@ import com.speed.service.common.multicast.SpeedEventListenerManager;
 import com.speed.service.common.protocol.ServiceDefinition;
 import com.speed.service.common.protocol.ServiceProviderDefinition;
 import com.speed.service.common.protocol.ServiceStatus;
+import com.speed.service.network.server.ProviderServiceServer;
 
 import java.net.SocketException;
 import java.util.*;
@@ -31,6 +32,7 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
     private String appName;
     //has bean init
     private AtomicBoolean initialized = new AtomicBoolean(false);
+    private final ProviderServiceServer serviceServer = new ProviderServiceServer();
 
     //put the service which is unService
     private final Set<ServiceDefinition> unStartService = Collections.synchronizedSet(new HashSet<ServiceDefinition>());
@@ -162,7 +164,15 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
             }
         }
         //if all service is started, online service and container
-
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    serviceServer.bootstrap(7001);//service run
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
         //connect config server to publish the container
     }
 
