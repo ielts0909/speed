@@ -56,7 +56,7 @@ public class TimerServer {
         if (args.length > 0) {
             port = Integer.parseInt(args[0]);
         } else {
-            port = 8080;
+            port = 7001;
         }
         new TimerServer(port).run();
     }

@@ -83,6 +83,7 @@ public class ProviderServiceServer implements ServiceServer {
 
         // Bind and start to accept incoming connections.
         this.f = b.bind(port).sync(); // (7)
+        this.f.channel().closeFuture().sync();
     }
 
     public void setDefaultHandler(DefaultHandler defaultHandler) {
@@ -95,13 +96,7 @@ public class ProviderServiceServer implements ServiceServer {
      * @param rightNow
      */
     public void shutdown(boolean rightNow) {
-        try {
-            f.channel().closeFuture().sync();
-        } catch (InterruptedException e) {
-
-        } finally {
-            this.workerGroup.shutdownGracefully();
-            this.bossGroup.shutdownGracefully();
-        }
+        this.workerGroup.shutdownGracefully();
+        this.bossGroup.shutdownGracefully();
     }
 }

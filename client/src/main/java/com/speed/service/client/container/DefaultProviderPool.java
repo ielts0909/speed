@@ -164,7 +164,7 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
             }
         }
         //if all service is started, online service and container
-        new Thread(new Runnable() {
+        Thread deam = new Thread(new Runnable() {
             public void run() {
                 try {
                     serviceServer.bootstrap(7001);//service run
@@ -172,7 +172,8 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
                     e.printStackTrace();
                 }
             }
-        }).start();
+        });
+        deam.start();
         //connect config server to publish the container
     }
 
