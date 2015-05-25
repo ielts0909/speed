@@ -169,7 +169,7 @@ public abstract class DefaultProviderPool extends AbstractContainerSupport imple
                 try {
                     serviceServer.bootstrap(7001);//service run
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    RecordLog.error("", e);
                 }
             }
         });
