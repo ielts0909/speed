@@ -24,10 +24,10 @@ public class ProviderServiceServer implements ServiceServer {
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
 
-    public void bootstrap(int port) throws InterruptedException {
+    public void bootstrap(final int port) throws InterruptedException {
         this.bossGroup = new NioEventLoopGroup(); // (1)
         this.workerGroup = new NioEventLoopGroup();
-        ServerBootstrap b = new ServerBootstrap(); // (2)
+        final ServerBootstrap b = new ServerBootstrap(); // (2)
         b.group(bossGroup, workerGroup)
                 .channel(NioServerSocketChannel.class) // (3)
                 .childHandler(new ChannelInitializer<SocketChannel>() { // (4)
@@ -81,9 +81,18 @@ public class ProviderServiceServer implements ServiceServer {
                 .option(ChannelOption.SO_BACKLOG, 128)          // (5)
                 .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
 
-        // Bind and start to accept incoming connections.
-        this.f = b.bind(port).sync(); // (7)
-        this.f.channel().closeFuture().sync();
+        Thread runTh = new Thread(new Runnable() {
+            public void run() {
+                // Bind and start to accept incoming connections.
+                try {
+                    f = b.bind(port).sync(); // (7)
+                    f.channel().closeFuture().sync();
+                } catch (Exception e) {
+                }
+            }
+        });
+        runTh.start();
+
     }
 
     public void setDefaultHandler(DefaultHandler defaultHandler) {
